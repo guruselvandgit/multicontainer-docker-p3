@@ -1,0 +1,24 @@
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: myjenkins
+    ports: 
+         - "8080:8080"
+         - "50000:50000"
+    volumes: 
+        - jenkins-data:/var/jenkins_home
+    restart: always
+  tomcat:
+    image: tomcat:jre25-temurin-resolute
+    container_name: tomcat
+    ports: 
+        - "9090:9090"
+    restart: always
+  web:
+    image: nginx:alpine
+    container_name: myalpine
+    ports: 
+        - "80:80"
+    restart: always
+volumes:
+  jenkins-data:
